@@ -1,6 +1,8 @@
-# Page Guides #
+# Wkd Page Guides #
 
-Documentaiton is not ready yet, but code is pretty easy and here i an example of how to use this widget (given that you have copied extension itself to your application first):
+WkdPageGuide encapsulates the [Guiders plugin](http://jeffpickhardt.com/guiders/).
+
+Documentaiton is not complete, but code is pretty easy and here i an example of how to use this widget (given that you have copied extension itself to your application first):
 
 ## Usage: ##
 
