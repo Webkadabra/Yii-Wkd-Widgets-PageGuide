@@ -1,8 +1,8 @@
-=== Page Guides ===
+# Page Guides #
 
 Documentaiton is not ready yet, but code is pretty easy and here i an example of how to use this widget (given that you have copied extension itself to your application first):
 
-=== Usage: ===
+## Usage: ##
 
 1. Add this action to Sitecontroller (or any other controller):
 
@@ -63,5 +63,5 @@ You can configure any buttons, but we have few "templates", to save time:
 
 Please, see documentaiton in code for details. 
 
-=== Todo ===
+## Todo ##
 Add more support for stateful guides (permanent etc.)
