@@ -16,19 +16,37 @@ class WkdPageGuide extends CWidget
 	 * @var array Steps of tour
 	 */
 	public $steps=array();
+	
 	/**
 	 * @var Tour key, by which we'd identify it in database
 	 */
 	public $key;
-	public $autoStart=false;
-	public $stateful=false;
-	public $assetsUrl=null;
 	/**
-	 * @var array The default options called just one time per request. This options will alter every other CJuiDatePicker instance in the page.
-	 * It has to be set at the first call of CJuiDatePicker widget in the request.
+	 * @var bool Start guide on page load
 	 */
-	public $defaultOptions;
-
+	public $autoStart=false;
+	/**
+	 * Stateful guide
+	 */
+	public $stateful=false;
+	/**
+	 * (Optional)
+	 * Url to ping when user has completed guide
+	 * To receive these pings you need to add action to SiteController:
+	 * <code>
+	 * public function actionPushUserState() {
+	 * 		if(!app()->request->isAjaxRequest) {
+	 *			throw new CHttpException(403);
+	 *		}
+	 *		if(isset($_POST['key'])) {
+	 *			app()->user->setState($_POST['key'], true);
+	 *			echo 'ok';
+	 *		}
+	 * }
+	 * </code>
+	 */
+	public $pushStateUrl=null;
+	public $assetsUrl=null;
 	public $pushStateUrl=null;
 
 	
@@ -88,9 +106,6 @@ class WkdPageGuide extends CWidget
 
 		}
 
-		#$cs->registerScript(__CLASS__, 	$this->defaultOptions?'jQuery.datetimepicker.setDefaults('.CJavaScript::encode($this->defaultOptions).');':'');
-		#$cs->registerScript(__CLASS__.'#'.$id, $js);
-
 	}
 
 	protected $_steps=array();
@@ -107,7 +122,7 @@ class WkdPageGuide extends CWidget
 
 					if(!is_array($btnOptions) && !empty($btnOptions)) {
 
-						// We have templates fof buttons: {next}, {close} & {complete}
+						// We have templates for buttons: {next}, {close} & {complete}
 						if($btnOptions==='{next}') {
 							$btnOptions=array(
 								'name'=>t('Next'),
